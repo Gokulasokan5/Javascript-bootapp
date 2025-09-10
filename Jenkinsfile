@@ -1,19 +1,12 @@
 pipeline {
     agent any 
+    tools {
+        maven 'maven'
+    }
     stages {
-        stage('Build') { 
+        stage('Checkout from Git') { 
             steps {
-               echo 'This is a Build Stage'
-            }
-        }
-        stage('Test') { 
-            steps {
-                echo 'This is a Test Stage'
-            }
-        }
-        stage('Deploy') { 
-            steps {
-                echo 'This is a Deploy Stage'
+               git branch: 'prod', url: 'https://github.com/bkrrajmali/morning-javaspringbootapp.git'
             }
         }
     }
