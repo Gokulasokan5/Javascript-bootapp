@@ -9,5 +9,10 @@ pipeline {
                git branch: 'prod', url: 'https://github.com/bkrrajmali/morning-javaspringbootapp.git'
             }
         }
+        stage('Maven Validate') { 
+            steps {
+               sh 'mvn validate'
+            }
+        }
     }
 }
