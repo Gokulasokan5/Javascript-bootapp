@@ -10,6 +10,7 @@ pipeline {
         ACR_LOGIN_SERVER = "ncpldocker.azurecr.io"
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
         TENANT_ID   = "ec78375d-0db0-42cf-82a6-2e6403e95936"
+        RESOURCE_GROUP = 
     }
     stages {
         stage('Checkout from Git') { 
@@ -79,7 +80,7 @@ pipeline {
        stage ('Docker Push to ACR') {
         steps {
             script {
-                echo 'Docker Image Push'
+                echo "Docker Image Push"
                 sh '''
                 docker tag ${IMAGE_NAME}:${IMAGE_TAG} ${FULL_IMAGE_NAME}
                 docker push ${FULL_IMAGE_NAME}
@@ -87,5 +88,18 @@ pipeline {
             }
          }
        }
+    //    stage ('Login to AKS Cluster') {
+    //     steps {
+    //         withCredentials([usernamePassword(credentialsId: 'azure-acr-sp', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD' )]) {
+    //         script {
+    //             echo "Azure Login to AKS"
+    //             sh '''
+    //             az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+    //             az aks get-credentials --resource-group $   --name $
+    //             '''
+    //         }
+    //         }
+    //     }
+    //    }
     }
 }
