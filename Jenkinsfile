@@ -40,11 +40,12 @@ pipeline {
                sh 'mvn package'
             }
         }
-        stage('Sonar Quality Gate')
+        stage('Sonar Quality Gate') {
          steps {
             timeout(time: 1, unit: 'MINUTES') {
                 waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
             }
          }
+        }
     }
 }
