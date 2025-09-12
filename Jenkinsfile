@@ -96,11 +96,24 @@ pipeline {
                 echo "Azure Login to AKS"
                 sh '''
                 az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
-                az aks get-credentials --resource-group $RESOURCE_GROUP   --name $CLUSTER_NAME
+                az aks get-credentials --resource-group $RESOURCE_GROUP   --name $CLUSTER_NAME --overwrite-existing
                 '''
              }
             }
-        }
+          }
+       }
+       stage ('Deploy to AKS') {
+        steps {
+            withCredentials([usernamePassword(credentialsId: 'azure-acr-sp', usernameVariable: 'AZURE_USERNAME', passwordVariable: 'AZURE_PASSWORD' )]) {
+            script {
+                echo "Azure Login to AKS"
+                sh '''
+                az login --service-principal -u $AZURE_USERNAME -p $AZURE_PASSWORD --tenant $TENANT_ID
+                kubectl apply -f k8s/sprinboot-deployment.yaml
+                '''
+             }
+            }
+          }
        }
     }
 }
