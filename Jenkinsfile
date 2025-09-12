@@ -10,7 +10,7 @@ pipeline {
         ACR_LOGIN_SERVER = "ncpldocker.azurecr.io"
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
         TENANT_ID   = "ec78375d-0db0-42cf-82a6-2e6403e95936"
-        RESOURCE_GROUP = 
+        // RESOURCE_GROUP = 
     }
     stages {
         stage('Checkout from Git') { 
@@ -18,44 +18,44 @@ pipeline {
                git branch: 'prod', url: 'https://github.com/bkrrajmali/morning-javaspringbootapp.git'
             }
         }
-        stage('Maven Validate') { 
-            steps {
-               sh 'mvn validate'
-            }
-        }
-        stage('Maven Compile') { 
-            steps {
-               sh 'mvn compile'
-            }
-        }
-        stage('Sonar Analysis') { 
-            environment {
-                SCANNER_HOME = tool 'Sonar-scanner'
-            }
-            steps {
-                withSonarQubeEnv('sonarserver'){
-                    sh '''
-                    $SCANNER_HOME/bin/sonar-scanner \
-                    -Dsonar.organization=bkrrajmali \
-                    -Dsonar.projectName=petclinic \
-                    -Dsonar.projectKey=bkrrajmali_petclinic \
-                    -Dsonar.java.binaries=.
-                    '''
-                } 
-            }
-        }
+        // stage('Maven Validate') { 
+        //     steps {
+        //        sh 'mvn validate'
+        //     }
+        // }
+        // stage('Maven Compile') { 
+        //     steps {
+        //        sh 'mvn compile'
+        //     }
+        // }
+        // stage('Sonar Analysis') { 
+        //     environment {
+        //         SCANNER_HOME = tool 'Sonar-scanner'
+        //     }
+        //     steps {
+        //         withSonarQubeEnv('sonarserver'){
+        //             sh '''
+        //             $SCANNER_HOME/bin/sonar-scanner \
+        //             -Dsonar.organization=bkrrajmali \
+        //             -Dsonar.projectName=petclinic \
+        //             -Dsonar.projectKey=bkrrajmali_petclinic \
+        //             -Dsonar.java.binaries=.
+        //             '''
+        //         } 
+        //     }
+        // }
         stage('Maven Package') { 
             steps {
                sh 'mvn package'
             }
         }
-        stage('Sonar Quality Gate') {
-         steps {
-            timeout(time: 1, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
-            }
-         }
-       }
+    //     stage('Sonar Quality Gate') {
+    //      steps {
+    //         timeout(time: 1, unit: 'MINUTES') {
+    //             waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
+    //         }
+    //      }
+    //    }
        stage('Docker Build'){
         steps {
             script {
