@@ -38,8 +38,8 @@ pipeline {
                     sh '''
                     $SCANNER_HOME/bin/sonar-scanner \
                     -Dsonar.organization=Gokulasokan5 \
-                    -Dsonar.projectName=springbootproject \
-                    -Dsonar.projectKey=springboot007_springbootproject \
+                    -Dsonar.projectName=springboot \
+                    -Dsonar.projectKey=springboot007_springboot \
                     -Dsonar.java.binaries=.
                     '''
                 } 
