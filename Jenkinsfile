@@ -30,9 +30,6 @@ pipeline {
             }
         }
         stage('Sonar Analysis') { 
-            environment {
-                SCANNER_HOME = tool 'Sonar-scanner'
-            }
             steps {
                 withSonarQubeEnv('sonarserver'){
                     sh '''
