@@ -4,7 +4,7 @@ pipeline {
         maven 'maven'
     }
     environment {
-        I MAGE_NAME  = "sprinbootapp"
+        IMAGE_NAME  = "sprinbootapp"
         IMAGE_TAG  = "latest"
         ACR_NAME    = "ncpldocker"
         ACR_LOGIN_SERVER = "ncpldocker.azurecr.io"
