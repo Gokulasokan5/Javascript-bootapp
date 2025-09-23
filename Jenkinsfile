@@ -40,7 +40,8 @@ pipeline {
                     -Dsonar.organization=springboot \
                     -Dsonar.projectName=springbootproject \
                     -Dsonar.projectKey=springboot007_springbootproject \
-                    -Dsonar.java.binaries=.
+                    -Dsonar.java.binaries=target/classes \
+                    -Dsonar.login=$SONAR_AUTH_TOKEN
                     '''
                 } 
             }
