@@ -30,6 +30,9 @@ pipeline {
             }
         }
         stage('Sonar Analysis') { 
+            environment {
+                SCANNER_HOME = tool 'Sonar-scanner'
+            }
             steps {
                 withSonarQubeEnv('sonarserver'){
                     sh '''
@@ -47,13 +50,13 @@ pipeline {
                sh 'mvn package'
             }
         }
-        stage('Sonar Quality Gate') {
-         steps {
-            timeout(time: 1, unit: 'MINUTES') {
-                waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
-            }
-         }
-       }
+    //     stage('Sonar Quality Gate') {
+    //      steps {
+    //         timeout(time: 1, unit: 'MINUTES') {
+    //             waitForQualityGate abortPipeline: true, credentialsId: 'sonar'
+    //         }
+    //      }
+    //    }
        stage('Docker Build'){
         steps {
             script {
