@@ -4,7 +4,7 @@ pipeline {
         maven 'maven'
     }
     environment {
-        IMAGE_NAME  = "sprinbootapp"
+        I MAGE_NAME  = "sprinbootapp"
         IMAGE_TAG  = "latest"
         ACR_NAME    = "ncpldocker"
         ACR_LOGIN_SERVER = "ncpldocker.azurecr.io"
@@ -16,7 +16,7 @@ pipeline {
     stages {
         stage('Checkout from Git') { 
             steps {
-               git branch: 'prod', url: 'https://github.com/bkrrajmali/morning-javaspringbootapp.git'
+               git branch: 'prod', url: 'https://github.com/Gokulasokan5/Javascript-bootapp.git'
             }
         }
         stage('Maven Validate') { 
@@ -39,7 +39,7 @@ pipeline {
                     $SCANNER_HOME/bin/sonar-scanner \
                     -Dsonar.organization=Gokulasokan5 \
                     -Dsonar.projectName=project-7 \
-                    -Dsonar.projectKey=gokulasokan5\
+                    -Dsonar.projectKey=project-7 \
                     -Dsonar.java.binaries=.
                     '''
                 } 
