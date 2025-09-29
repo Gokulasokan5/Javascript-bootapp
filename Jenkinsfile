@@ -6,10 +6,10 @@ pipeline {
     environment {
         IMAGE_NAME  = "sprinbootapp"
         IMAGE_TAG  = "latest"
-        ACR_NAME    = "ncpldocker"
-        ACR_LOGIN_SERVER = "ncpldocker.azurecr.io"
+        ACR_NAME    = "ncpldocker55"
+        ACR_LOGIN_SERVER = "ncpldocker55.azurecr.io"
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
-        TENANT_ID   = "ec78375d-0db0-42cf-82a6-2e6403e95936"
+        TENANT_ID   = "fcdb9b0c-aa0e-4526-857b-3cf898568a89"
         RESOURCE_GROUP = "demo-rg"
         CLUSTER_NAME    = "demo-eks"
     }
