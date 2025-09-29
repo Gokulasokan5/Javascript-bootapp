@@ -10,7 +10,7 @@ pipeline {
         ACR_LOGIN_SERVER = "ncpldocker55.azurecr.io"
         FULL_IMAGE_NAME = "${ACR_LOGIN_SERVER}/${IMAGE_NAME}:${IMAGE_TAG}"
         TENANT_ID   = "fcdb9b0c-aa0e-4526-857b-3cf898568a89"
-        RESOURCE_GROUP = "demo-rg"
+        RESOURCE_GROUP = "jenkins"
         CLUSTER_NAME    = "demo-eks"
     }
     stages {
